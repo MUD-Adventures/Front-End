@@ -82,13 +82,13 @@ class Rooms extends React.Component {
     render(){
         return(
            <Container>
-        <Header>
-          Mud Adventure
-        </Header>
+                <Header>
+                Mud Adventure
+                </Header>
 
                 
                 <div>
-                    <Title> You have moved to </Title>
+                    <Title> You are at the </Title>
                     <p>{this.state.currentRoom}</p>
                     <p>{this.state.currentDesc}</p>
 
