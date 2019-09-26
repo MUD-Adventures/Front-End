@@ -25,13 +25,19 @@ class Rooms extends React.Component {
         this.state = {
             currentRoom: "",
             currentDesc: "",
+            rooms: [],
             
     }
 }
     
     componentDidMount() {
+
+        axios
+            .get(`https://mud-adventures.herokuapp.com/api/rooms/`)
+            .then(res => this.setState({...this.state, rooms:res.data}))
+            .catch(err => console.log(err))
+        
         this.start();
-        // this.move();
     }
 
     start = () => {
@@ -82,6 +88,7 @@ class Rooms extends React.Component {
     };
 
     render(){
+        console.log(this.state)
         return(
            <Container>
                 <Header>
