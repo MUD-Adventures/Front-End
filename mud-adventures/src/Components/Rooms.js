@@ -4,19 +4,15 @@ import styled from 'styled-components';
 
 
 const Container = styled.div`
-
 `
 
 const Title = styled.h1`
-
 `
 
 const Header = styled.header`
-
 `
 
 const Button = styled.button`
-
 `
 
 class Rooms extends React.Component {
@@ -25,18 +21,25 @@ class Rooms extends React.Component {
         this.state = {
             currentRoom: "",
             currentDesc: "",
+            rooms: [],
+            
     }
 }
     
     componentDidMount() {
+
+        axios
+            .get(`https://mud-adventures.herokuapp.com/api/rooms/`)
+            .then(res => this.setState({...this.state, rooms:res.data}))
+            .catch(err => console.log(err))
+        
         this.start();
-        this.move();
     }
 
     start = () => {
         const token = localStorage.getItem('token'); 
         axios({
-            url: `https://mud-adventures.herokuapp.com/api/rooms`,
+            url: `https://mud-adventures.herokuapp.com/api/adv/init/`,
             
             method: "GET",
             headers: {
@@ -48,6 +51,7 @@ class Rooms extends React.Component {
                     currentRoom: res.data.title,
                     userID: res.data.uuid,
                     currentDesc: res.data.description,
+                    
                 }); 
 
             })
@@ -80,6 +84,7 @@ class Rooms extends React.Component {
     };
 
     render(){
+        console.log(this.state)
         return(
            <Container>
                 <Header>
