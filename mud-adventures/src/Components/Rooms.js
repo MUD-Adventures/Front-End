@@ -25,18 +25,19 @@ class Rooms extends React.Component {
         this.state = {
             currentRoom: "",
             currentDesc: "",
+            
     }
 }
     
     componentDidMount() {
         this.start();
-        this.move();
+        // this.move();
     }
 
     start = () => {
         const token = localStorage.getItem('token'); 
         axios({
-            url: `https://mud-adventures.herokuapp.com/api/rooms`,
+            url: `https://mud-adventures.herokuapp.com/api/adv/init/`,
             
             method: "GET",
             headers: {
@@ -48,6 +49,7 @@ class Rooms extends React.Component {
                     currentRoom: res.data.title,
                     userID: res.data.uuid,
                     currentDesc: res.data.description,
+                    
                 }); 
 
             })
