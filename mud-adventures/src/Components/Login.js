@@ -40,10 +40,7 @@ const SignUp = styled.div`
 
 `
 
-const initialUser = {
-  username: '',
-    password: '',
-  }
+
 
 export default function Login(props) {
     const [user, setUser] = useState({ username: "", password: "" })

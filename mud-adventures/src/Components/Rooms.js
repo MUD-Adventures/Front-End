@@ -36,7 +36,7 @@ class Rooms extends React.Component {
     start = () => {
         const token = localStorage.getItem('token'); 
         axios({
-            url: `https://mud-adventures.herokuapp.com/api/adv/rooms/`,
+            url: `https://mud-adventures.herokuapp.com/api/rooms`,
             
             method: "GET",
             headers: {
@@ -59,7 +59,7 @@ class Rooms extends React.Component {
     move = (direction) => {
         const token = localStorage.getItem('token'); 
         axios({
-            url: `https://mud-adventures.herokuapp.com/api/adv/move/`,
+            url: `https://mud-adventures.herokuapp.com/api/adv/move`,
             method: "POST",
             headers: {
                 Authorization: token
