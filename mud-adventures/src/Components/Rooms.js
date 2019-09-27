@@ -38,6 +38,7 @@ class Rooms extends React.Component {
             .catch(err => console.log(err))
         
         this.start();
+        this.move('s')
     }
 
     start = () => {
