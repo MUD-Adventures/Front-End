@@ -4,37 +4,71 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'
 
 const Form = styled.form`
-
+display: flex;
+flex-direction: column;
+align-items: center;
+color: white;
 `
 const Title = styled.h1`
 
 `
 
 const Button = styled.button`
+background: black;
+color: red;
+border-radius: 25px;
+border: 2px solid red;
+width: 100px;
+outline: none;
 
+
+
+:hover {
+  color: green;
+  cursor: pointer;
+  border: 2px solid green;
+}
 `
 const Input = styled.div`
 
 `
 
 const Username = styled.input`
-
+margin: 5px;
+border: 2px solid green;
+border-radius: 5px;
+padding: 5px;
 `
 
 const Password = styled.input`
-
+margin: 5px;
+border: 2px solid green;
+border-radius: 5px;
+padding: 5px;
 `
 
 const Password2 = styled.input`
-
+margin: 5px;
+border: 2px solid green;
+border-radius: 5px;
+padding: 5px;
 `
 
 const Container = styled.div`
-
+width: 30rem;
+height: 18rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-left: 28rem;
+margin-top: 5rem;
+border: 2px solid green;
+border-radius: 25px;
 `
 
 const SignUp = styled.div`
-
+margin: 1rem;
+color: white;
 `
 
 const Register = (props) => {
