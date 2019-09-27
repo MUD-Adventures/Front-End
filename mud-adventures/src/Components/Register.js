@@ -19,6 +19,7 @@ color: red;
 border-radius: 25px;
 border: 2px solid red;
 width: 100px;
+outline: none;
 
 
 

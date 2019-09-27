@@ -68,6 +68,7 @@ background: black;
 color: red;
 border-radius: 25px;
 border: 2px solid red;
+outline: none;
 
 
 
