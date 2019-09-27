@@ -1,18 +1,83 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import compass from './compass.svg'
 
 
 const Container = styled.div`
+width: 87rem;
+height: 41rem;
+border-radius: 8px;
+display: flex;
+flex-direction: row;
 `
 
 const Title = styled.h1`
+width: 50rem;
+font-size: 39px;
+color: white;
+margin-left: 2rem;
+
 `
 
-const Header = styled.header`
+const WorldMap = styled.div`
+height: 28rem;
+width: 65rem;
+border: 2px solid green;
+border-radius: 25px;
+margin: 1rem;
+`
+
+const Room = styled.div`
+font-size: 19px;
+color: green;
+`
+
+const Desc = styled.header`
+width: 55rem;
+margin-left: 2rem;
+font-size: 19px;
+color: white;
+`
+
+const Compass = styled.img`
+height: 6rem;
+margin: 1rem;
+`
+
+const CompassBox = styled.div`
+width: 14rem;
+height: 14rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-top: 15rem;
+margin-left: 3rem;
+
+`
+
+const MiddleRow = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+
 `
 
 const Button = styled.button`
+background: black;
+color: red;
+border-radius: 25px;
+border: 2px solid red;
+
+
+
+:hover {
+  color: green;
+  cursor: pointer;
+  border: 2px solid green;
+}
+
+
 `
 
 class Rooms extends React.Component {
@@ -87,24 +152,29 @@ class Rooms extends React.Component {
         console.log(this.state)
         return(
            <Container>
-                <Header>
-                Mud Adventure
-                </Header>
 
-                
-                <div>
-                    <Title> You are at the </Title>
-                    <p>{this.state.currentRoom}</p>
-                    <p>{this.state.currentDesc}</p>
+               <Room> 
+                    <Title> You are at the {this.state.currentRoom}</Title>
 
-                </div> 
+                    <WorldMap>
+                    </WorldMap>
+                        
+                    <Desc>{this.state.currentDesc}</Desc>
+                </Room> 
 
-                <div>
+                <CompassBox>
                     <Button type="button" onClick={() => this.move('n')}>North</Button>
+
+                    <MiddleRow>
+                        <Button type="button" onClick={() => this.move('w')}>West</Button>
+                        <Compass src={compass} alt="compass" />
+                        <Button type="button" onClick={() => this.move('e')}>East</Button>
+                    </MiddleRow>
+
+
                     <Button type="button" onClick={() => this.move('s')}>South</Button>
-                    <Button type="button" onClick={() => this.move('e')}>East</Button>
-                    <Button type="button" onClick={() => this.move('w')}>West</Button>
-                </div>
+                </CompassBox>
+
             </Container>
         )
         
