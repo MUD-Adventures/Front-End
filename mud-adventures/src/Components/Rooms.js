@@ -200,7 +200,7 @@ class Rooms extends React.Component {
                             {
                                 this.getIds()
                                 .filter(id => 95<id && id<106)     
-                                .map(id => <Room id={id}>{id}</Room>)
+                                .map(id => <Room key={id} id={id}>{id}</Room>)
                             }
                             </Row>
                             
@@ -209,7 +209,7 @@ class Rooms extends React.Component {
                             {
                                 this.getIds()
                                 .filter(id => 85<id && id<96)
-                                .map(id => <Room id={id}>{id}</Room>)
+                                .map(id => <Room key={id} id={id}>{id}</Room>)
                             }
                             </Row>
                             
@@ -218,7 +218,7 @@ class Rooms extends React.Component {
                             {
                                 this.getIds()
                                 .filter(id => 75<id && id<86)
-                                .map(id => <Room id={id}>{id}</Room>)
+                                .map(id => <Room key={id} id={id}>{id}</Room>)
                             }
                             </Row>
 
@@ -227,7 +227,7 @@ class Rooms extends React.Component {
                             {
                                 this.getIds()
                                 .filter(id => 65<id && id<76)
-                                .map(id => <Room id={id}>{id}</Room>)
+                                .map(id => <Room  key={id} id={id}>{id}</Room>)
                             }
                             </Row>
 
@@ -236,7 +236,7 @@ class Rooms extends React.Component {
                             {
                                 this.getIds()
                                 .filter(id => 55<id && id<66)     
-                                .map(id => <Room id={id}>{id}</Room>)
+                                .map(id => <Room  key={id} id={id}>{id}</Room>)
                             }
                             </Row>
 
@@ -245,7 +245,7 @@ class Rooms extends React.Component {
                             {
                                 this.getIds()
                                 .filter(id => 45<id && id<56)
-                                .map(id => <Room id={id}>{id}</Room>)
+                                .map(id => <Room  key={id} id={id}>{id}</Room>)
                             }
                             </Row>
 
@@ -255,7 +255,7 @@ class Rooms extends React.Component {
                             {
                                 this.getIds()
                                 .filter(id => 35<id && id<46)
-                                .map(id => <Room id={id}>{id}</Room>)
+                                .map(id => <Room  key={id} id={id}>{id}</Room>)
                             }
                             </Row>
 
@@ -264,7 +264,7 @@ class Rooms extends React.Component {
                             {
                                 this.getIds()
                                 .filter(id => 25<id && id<36)
-                                .map(id => <Room id={id}>{id}</Room>)
+                                .map(id => <Room key={id}  id={id}>{id}</Room>)
                             }
                             </Row>
 
@@ -273,7 +273,7 @@ class Rooms extends React.Component {
                             {
                                 this.getIds()
                                 .filter(id => 15<id && id<26)
-                                .map(id => <Room id={id}>{id}</Room>)
+                                .map(id => <Room key={id}  id={id}>{id}</Room>)
                             }
                             </Row>
 
@@ -282,7 +282,7 @@ class Rooms extends React.Component {
                             {
                                 this.getIds()
                                 .filter(id => 5<id && id<16)
-                                .map(id => <Room id={id}>{id}</Room>)
+                                .map(id => <Room key={id}  id={id}>{id}</Room>)
                             }
                             </Row>
 
