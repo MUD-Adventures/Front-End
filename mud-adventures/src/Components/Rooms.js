@@ -41,12 +41,14 @@ justify-content: flex-end;
 
 const Row = styled.div`
 display: flex;
+height: 8.3%;q
 width: 100%;
 flex-wrap: no-wrap;
 `
 
 const Room = styled.div`
 width: 10%;
+height: 100%;
 border: 1px solid yellow;
 `
 const Player = styled.div`
@@ -200,7 +202,7 @@ class Rooms extends React.Component {
                         <WorldMap>
                             
                             <FirstRow>
-                                <Room id={this.getIds()[101]}> <Player></Player></Room>
+                                <Room id={this.getIds()[101]}>{this.getIds()[101]} </Room>
                             </FirstRow>
                             
                             <Row>
@@ -295,7 +297,7 @@ class Rooms extends React.Component {
 
                             
                             <Row>
-                                <Room id={this.getIds()[100]}>{this.getIds()[100]}</Room>
+                                <Room id={this.getIds()[100]}><Player></Player></Room>
                             </Row>
 
   
