@@ -49,6 +49,13 @@ const Room = styled.div`
 width: 10%;
 border: 1px solid yellow;
 `
+const Player = styled.div`
+height: 15px;
+width: 15px;
+border-radius: 50%
+background: red;
+display: inline-block
+`
 
 const Desc = styled.header`
 width: 55rem;
@@ -193,7 +200,7 @@ class Rooms extends React.Component {
                         <WorldMap>
                             
                             <FirstRow>
-                                <Room id={this.getIds()[101]}>{this.getIds()[101]}</Room>
+                                <Room id={this.getIds()[101]}> <Player></Player></Room>
                             </FirstRow>
                             
                             <Row>
