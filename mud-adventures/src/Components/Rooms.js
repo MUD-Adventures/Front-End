@@ -17,7 +17,11 @@ width: 50rem;
 font-size: 39px;
 color: white;
 margin-left: 2rem;
+`
 
+const World = styled.div`
+font-size: 19px;
+color: green;
 `
 
 const WorldMap = styled.div`
@@ -29,10 +33,21 @@ border: 2px solid green;
 border-radius: 25px;
 margin: 1rem;
 `
+const FirstRow = styled.div`
+display: flex;
+width: 100%;
+justify-content: flex-end;
+`
+
+const Row = styled.div`
+display: flex;
+width: 100%;
+flex-wrap: no-wrap;
+`
 
 const Room = styled.div`
-font-size: 19px;
-color: green;
+width: 10%;
+border: 1px solid yellow;
 `
 
 const Desc = styled.header`
@@ -170,91 +185,112 @@ class Rooms extends React.Component {
         return(
            <Container>
 
-                
-
-               <Room> 
+               <World> 
                     <Title> You are at the {this.state.currentRoom}</Title>
                     
                     {!this.state.rooms && <p>Loading data.... </p>}
                     {this.state.rooms && (
                         <WorldMap>
                             
-                            <div>{this.getIds()[101]}</div>
-                            <p>next line</p>
-
+                            <FirstRow>
+                                <Room id={this.getIds()[101]}>{this.getIds()[101]}</Room>
+                            </FirstRow>
+                            
+                            <Row>
                             {
                                 this.getIds()
                                 .filter(id => 95<id && id<106)     
-                                .map(id => <div>-{id}-</div>)
+                                .map(id => <Room id={id}>{id}</Room>)
                             }
-                            <p>next line</p>
-
+                            </Row>
                             
+                
+                            <Row>
                             {
                                 this.getIds()
                                 .filter(id => 85<id && id<96)
-                                .map(id => <div>-{id}-</div>)
+                                .map(id => <Room id={id}>{id}</Room>)
                             }
-                            <p>next line</p>
-
+                            </Row>
+                            
+                            
+                            <Row>
                             {
                                 this.getIds()
                                 .filter(id => 75<id && id<86)
-                                .map(id => <div>-{id}-</div>)
+                                .map(id => <Room id={id}>{id}</Room>)
                             }
-                            <p>next line</p>
+                            </Row>
 
+                            
+                            <Row>
                             {
                                 this.getIds()
                                 .filter(id => 65<id && id<76)
-                                .map(id => <div>-{id}-</div>)
+                                .map(id => <Room id={id}>{id}</Room>)
                             }
-                            <p>next line</p>
+                            </Row>
 
+                            
+                            <Row>
                             {
                                 this.getIds()
                                 .filter(id => 55<id && id<66)     
-                                .map(id => <div>-{id}-</div>)
+                                .map(id => <Room id={id}>{id}</Room>)
                             }
-                            <p>next line</p>
+                            </Row>
 
                             
+                            <Row>
                             {
                                 this.getIds()
                                 .filter(id => 45<id && id<56)
-                                .map(id => <div>-{id}-</div>)
+                                .map(id => <Room id={id}>{id}</Room>)
                             }
-                            <p>next line</p>
+                            </Row>
 
+                            
+                            
+                            <Row>
                             {
                                 this.getIds()
                                 .filter(id => 35<id && id<46)
-                                .map(id => <div>-{id}-</div>)
+                                .map(id => <Room id={id}>{id}</Room>)
                             }
-                            <p>next line</p>
+                            </Row>
 
+                            
+                            <Row>
                             {
                                 this.getIds()
                                 .filter(id => 25<id && id<36)
-                                .map(id => <div>-{id}-</div>)
+                                .map(id => <Room id={id}>{id}</Room>)
                             }
-                            <p>next line</p>
+                            </Row>
 
+                            
+                            <Row>
                             {
                                 this.getIds()
                                 .filter(id => 15<id && id<26)
-                                .map(id => <div>-{id}-</div>)
+                                .map(id => <Room id={id}>{id}</Room>)
                             }
-                            <p>next line</p>
+                            </Row>
 
+                            
+                            <Row>
                             {
                                 this.getIds()
                                 .filter(id => 5<id && id<16)
-                                .map(id => <div>-{id}-</div>)
+                                .map(id => <Room id={id}>{id}</Room>)
                             }
-                            <p>next line</p>
+                            </Row>
 
-                            <div>{this.getIds()[100]}</div>
+                            
+                            <Row>
+                                <Room id={this.getIds()[100]}>{this.getIds()[100]}</Room>
+                            </Row>
+
   
                          </WorldMap>
                     )}
@@ -262,7 +298,7 @@ class Rooms extends React.Component {
                     
                         
                     <Desc>{this.state.currentDesc}</Desc>
-                </Room> 
+                </World> 
 
                 <CompassBox>
                     <Button type="button" onClick={() => this.move('n')}>North</Button>
