@@ -21,6 +21,8 @@ margin-left: 2rem;
 `
 
 const WorldMap = styled.div`
+display: flex;
+flex-wrap: wrap;
 height: 28rem;
 width: 65rem;
 border: 2px solid green;
@@ -87,20 +89,22 @@ class Rooms extends React.Component {
         this.state = {
             currentRoom: "",
             currentDesc: "",
-            rooms: [],
+            rooms: null,
             
     }
 }
     
     componentDidMount() {
 
+        this.start();
+        this.move('s')
+
         axios
             .get(`https://mud-adventures.herokuapp.com/api/rooms/`)
             .then(res => this.setState({...this.state, rooms:res.data}))
             .catch(err => console.log(err))
         
-        this.start();
-        this.move('s')
+        
     }
 
     start = () => {
@@ -150,16 +154,112 @@ class Rooms extends React.Component {
             });
     };
 
+    getIds = () => {
+        const ids=[]
+        for (let i=0; i<this.state.rooms.length;i++) {
+            ids[i] = this.state.rooms[i].id
+        }
+        return ids
+    }
+
+
     render(){
-        console.log(this.state)
+
+
+        
         return(
            <Container>
 
+                
+
                <Room> 
                     <Title> You are at the {this.state.currentRoom}</Title>
+                    
+                    {!this.state.rooms && <p>Loading data.... </p>}
+                    {this.state.rooms && (
+                        <WorldMap>
+                            
+                            <div>{this.getIds()[101]}</div>
+                            <p>next line</p>
 
-                    <WorldMap>
-                    </WorldMap>
+                            {
+                                this.getIds()
+                                .filter(id => 95<id && id<106)     
+                                .map(id => <div>-{id}-</div>)
+                            }
+                            <p>next line</p>
+
+                            
+                            {
+                                this.getIds()
+                                .filter(id => 85<id && id<96)
+                                .map(id => <div>-{id}-</div>)
+                            }
+                            <p>next line</p>
+
+                            {
+                                this.getIds()
+                                .filter(id => 75<id && id<86)
+                                .map(id => <div>-{id}-</div>)
+                            }
+                            <p>next line</p>
+
+                            {
+                                this.getIds()
+                                .filter(id => 65<id && id<76)
+                                .map(id => <div>-{id}-</div>)
+                            }
+                            <p>next line</p>
+
+                            {
+                                this.getIds()
+                                .filter(id => 55<id && id<66)     
+                                .map(id => <div>-{id}-</div>)
+                            }
+                            <p>next line</p>
+
+                            
+                            {
+                                this.getIds()
+                                .filter(id => 45<id && id<56)
+                                .map(id => <div>-{id}-</div>)
+                            }
+                            <p>next line</p>
+
+                            {
+                                this.getIds()
+                                .filter(id => 35<id && id<46)
+                                .map(id => <div>-{id}-</div>)
+                            }
+                            <p>next line</p>
+
+                            {
+                                this.getIds()
+                                .filter(id => 25<id && id<36)
+                                .map(id => <div>-{id}-</div>)
+                            }
+                            <p>next line</p>
+
+                            {
+                                this.getIds()
+                                .filter(id => 15<id && id<26)
+                                .map(id => <div>-{id}-</div>)
+                            }
+                            <p>next line</p>
+
+                            {
+                                this.getIds()
+                                .filter(id => 5<id && id<16)
+                                .map(id => <div>-{id}-</div>)
+                            }
+                            <p>next line</p>
+
+                            <div>{this.getIds()[100]}</div>
+  
+                         </WorldMap>
+                    )}
+
+                    
                         
                     <Desc>{this.state.currentDesc}</Desc>
                 </Room> 
