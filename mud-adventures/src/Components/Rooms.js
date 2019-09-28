@@ -41,7 +41,7 @@ justify-content: flex-end;
 
 const Row = styled.div`
 display: flex;
-height: 8.3%;q
+height: 8.3%;
 width: 100%;
 flex-wrap: no-wrap;
 `
@@ -50,13 +50,6 @@ const Room = styled.div`
 width: 10%;
 height: 100%;
 border: 1px solid yellow;
-`
-const Player = styled.div`
-height: 15px;
-width: 15px;
-border-radius: 50%
-background: red;
-display: inline-block
 `
 
 const Desc = styled.header`
@@ -297,7 +290,7 @@ class Rooms extends React.Component {
 
                             
                             <Row>
-                                <Room id={this.getIds()[100]}><Player></Player></Room>
+                                <Room id={this.getIds()[100]}>{this.getIds()[100]}</Room>
                             </Row>
 
   
