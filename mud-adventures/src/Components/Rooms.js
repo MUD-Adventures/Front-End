@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import compass from './compass.svg'
+import Room from './Room'
 
 
 const Container = styled.div`
@@ -36,6 +37,7 @@ margin: 1rem;
 const FirstRow = styled.div`
 display: flex;
 width: 100%;
+height: 8.3%;
 justify-content: flex-end;
 `
 
@@ -46,11 +48,7 @@ width: 100%;
 flex-wrap: no-wrap;
 `
 
-const Room = styled.div`
-width: 10%;
-height: 100%;
-border: 1px solid yellow;
-`
+
 
 const Desc = styled.header`
 width: 55rem;
@@ -104,10 +102,10 @@ class Rooms extends React.Component {
     constructor() {
         super();
         this.state = {
-            currentRoom: "",
+            playerRoom: null,
+            currentRoomTitle: "",
             currentDesc: "",
             rooms: null,
-            
     }
 }
     
@@ -118,7 +116,7 @@ class Rooms extends React.Component {
 
         axios
             .get(`https://mud-adventures.herokuapp.com/api/rooms/`)
-            .then(res => this.setState({...this.state, rooms:res.data}))
+            .then(res => this.setState({...this.state, rooms:res.data, playerRoom:res.data[100]}))
             .catch(err => console.log(err))
         
         
@@ -136,7 +134,7 @@ class Rooms extends React.Component {
         })
             .then(res => {
                 this.setState({ 
-                    currentRoom: res.data.title,
+                    currentRoomTitle: res.data.title,
                     userID: res.data.uuid,
                     currentDesc: res.data.description,
                     
@@ -149,6 +147,9 @@ class Rooms extends React.Component {
     };
 
     move = (direction) => {
+
+        const directions={'n':'n_to', 's':'s_to', 'e':'e_to', 'w':'w_to'}
+
         const token = localStorage.getItem('token'); 
         axios({
             url: `https://mud-adventures.herokuapp.com/api/adv/move`,
@@ -162,92 +163,92 @@ class Rooms extends React.Component {
         })
             .then(res => {
                 this.setState({
-                    currentRoom: res.data.title,
+                    currentRoomTitle: res.data.title,
                     currentDesc: res.data.description,
                 })
+                console.log(this.state.playerRoom)
+                let formattedDirection = directions[direction]
+                console.log(formattedDirection)
+                console.log(": ", this.state.playerRoom[formattedDirection])
+                let nextRoomId = this.state.playerRoom[formattedDirection]
+                if( nextRoomId !== 0) {
+
+                    let nextRoom = this.state.rooms.find(room => room.id === nextRoomId)
+                    console.log(nextRoom)
+                    this.setState({...this.state, playerRoom: nextRoom})
+
+                }
+
             })
             .catch(err => {
                 console.log('errors', err.response)
             });
     };
 
-    getIds = () => {
-        const ids=[]
-        for (let i=0; i<this.state.rooms.length;i++) {
-            ids[i] = this.state.rooms[i].id
-        }
-        return ids
-    }
-
-
     render(){
 
-
         
+       
         return(
            <Container>
 
                <World> 
-                    <Title> You are at the {this.state.currentRoom}</Title>
+                    <Title> You are at the {this.state.currentRoomTitle}</Title>
                     
                     {!this.state.rooms && <p>Loading data.... </p>}
                     {this.state.rooms && (
+                        
                         <WorldMap>
                             
                             <FirstRow>
-                                <Room id={this.getIds()[101]}>{this.getIds()[101]} </Room>
+                                <Room props={this.state.rooms[101]}></Room>
                             </FirstRow>
                             
                             <Row>
                             {
-                                this.getIds()
-                                .filter(id => 95<id && id<106)     
-                                .map(id => <Room key={id} id={id}>{id}</Room>)
+                                this.state.rooms
+                                    .filter(room => 95<room.id && room.id<106)     
+                                    .map( room => <Room key={room.id} room={room} playerRoom={this.state.playerRoom}></Room>)
                             }
                             </Row>
                             
                 
                             <Row>
                             {
-                                this.getIds()
-                                .filter(id => 85<id && id<96)
-                                .map(id => <Room key={id} id={id}>{id}</Room>)
+                                this.state.rooms.filter(room => 85<room.id && room.id<96)     
+                                .map( room => <Room key={room.id} room={room} playerRoom={this.state.playerRoom}></Room>)
                             }
                             </Row>
                             
                             
                             <Row>
                             {
-                                this.getIds()
-                                .filter(id => 75<id && id<86)
-                                .map(id => <Room key={id} id={id}>{id}</Room>)
-                            }
-                            </Row>
-
-                            
-                            <Row>
-                            {
-                                this.getIds()
-                                .filter(id => 65<id && id<76)
-                                .map(id => <Room  key={id} id={id}>{id}</Room>)
+                                this.state.rooms.filter(room => 75<room.id && room.id<86)     
+                                .map( room => <Room key={room.id} room={room} playerRoom={this.state.playerRoom}></Room>)
                             }
                             </Row>
 
                             
                             <Row>
                             {
-                                this.getIds()
-                                .filter(id => 55<id && id<66)     
-                                .map(id => <Room  key={id} id={id}>{id}</Room>)
+                                this.state.rooms.filter(room => 65<room.id && room.id<76)     
+                                .map( room => <Room key={room.id} room={room} playerRoom={this.state.playerRoom}></Room>)
                             }
                             </Row>
 
                             
                             <Row>
                             {
-                                this.getIds()
-                                .filter(id => 45<id && id<56)
-                                .map(id => <Room  key={id} id={id}>{id}</Room>)
+                                this.state.rooms.filter(room => 55<room.id && room.id<66)     
+                                .map( room => <Room key={room.id} room={room} playerRoom={this.state.playerRoom}></Room>)
+                            }
+                            </Row>
+
+                            
+                            <Row>
+                            {
+                                this.state.rooms.filter(room => 45<room.id && room.id<56)     
+                                .map( room => <Room key={room.id} room={room} playerRoom={this.state.playerRoom}></Room>)
                             }
                             </Row>
 
@@ -255,42 +256,38 @@ class Rooms extends React.Component {
                             
                             <Row>
                             {
-                                this.getIds()
-                                .filter(id => 35<id && id<46)
-                                .map(id => <Room  key={id} id={id}>{id}</Room>)
+                                this.state.rooms.filter(room => 35<room.id && room.id<46)     
+                                .map( room => <Room key={room.id} room={room} playerRoom={this.state.playerRoom}></Room>)
                             }
                             </Row>
 
                             
                             <Row>
                             {
-                                this.getIds()
-                                .filter(id => 25<id && id<36)
-                                .map(id => <Room key={id}  id={id}>{id}</Room>)
+                                this.state.rooms.filter(room => 25<room.id && room.id<36)     
+                                .map( room => <Room key={room.id} room={room} playerRoom={this.state.playerRoom}></Room>)
                             }
                             </Row>
 
                             
                             <Row>
                             {
-                                this.getIds()
-                                .filter(id => 15<id && id<26)
-                                .map(id => <Room key={id}  id={id}>{id}</Room>)
+                                this.state.rooms.filter(room => 15<room.id && room.id<26)     
+                                .map( room => <Room key={room.id} room={room} playerRoom={this.state.playerRoom}></Room>)
                             }
                             </Row>
 
                             
                             <Row>
                             {
-                                this.getIds()
-                                .filter(id => 5<id && id<16)
-                                .map(id => <Room key={id}  id={id}>{id}</Room>)
-                            }
+                                this.state.rooms.filter(room => 5<room.id && room.id<16)     
+                                .map( room => <Room key={room.id} room={room} playerRoom={this.state.playerRoom}></Room>)
+                            } 
                             </Row>
 
                             
                             <Row>
-                                <Room id={this.getIds()[100]}>{this.getIds()[100]}</Room>
+                                <Room room={this.state.rooms[100]} playerRoom={this.state.playerRoom}></Room>
                             </Row>
 
   
