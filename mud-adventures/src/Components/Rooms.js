@@ -201,7 +201,7 @@ class Rooms extends React.Component {
                         <WorldMap>
                             
                             <FirstRow>
-                                <Room props={this.state.rooms[101]}></Room>
+                                <Room room={this.state.rooms[101]} playerRoom={this.state.playerRoom}></Room>
                             </FirstRow>
                             
                             <Row>

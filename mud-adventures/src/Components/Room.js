@@ -32,10 +32,8 @@ class Room extends React.Component {
         return(
             <RoomStyle>
                 
-                {/* {this.props.room && <div>{this.props.room.id}</div>} */}
-
                 {
-                    this.props.playerRoom && 
+                    this.props.playerRoom && this.props.room &&
                     this.props.playerRoom.id === this.props.room.id &&
                     <Player></Player>
                 }
